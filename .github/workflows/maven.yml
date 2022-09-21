@@ -32,11 +32,11 @@ jobs:
           path: target/surefire-reports/*.xml
           reporter: java-junit
           fail-on-error: true
-          
+      - run: mkdir staging && cp target/*.jar staging
       - uses: actions/upload-artifact@v3
         with:
           name: test
-          path: src/main/java/Main.jar
+          path: src/main/java/Main.java
       
 
 
