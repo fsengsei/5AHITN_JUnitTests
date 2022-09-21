@@ -33,14 +33,10 @@ jobs:
           reporter: java-junit
           fail-on-error: true
           
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v3
         with:
           name: test
-          path: src/main/java/Main.java
-      - name: Download a single artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: test
+          path: src/main/java/Main.jar
+      
 
 
