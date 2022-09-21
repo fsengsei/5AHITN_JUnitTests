@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  test:
+  test-and-build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -26,18 +26,9 @@ jobs:
         path: target/surefire-reports/*.xml
         reporter: java-junit
         fail-on-error: true
-
-  build:
-    runs-on: ubuntu-latest 
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-      - run: mvn --batch-mode --update-snapshots verify
-      - run: mkdir staging && cp target/*.jar staging
-      - uses: actions/upload-artifact@v3
-        with:
-           name: Package
-           path: staging
+    - run: mvn --batch-mode --update-snapshots verify
+    - run: mkdir staging && cp target/*.jar staging
+    - uses: actions/upload-artifact@v3
+      with:
+        name: Package
+        path: staging
