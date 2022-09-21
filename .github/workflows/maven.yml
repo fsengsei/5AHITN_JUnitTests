@@ -36,7 +36,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: test
-          path: src/main/java/Main.java
+          path: staging
       
 
 
