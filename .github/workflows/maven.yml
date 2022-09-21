@@ -23,7 +23,7 @@ jobs:
 
       - name: Test
         run: mvn --batch-mode -Dmaven.test.failure.ignore=true test
-
+        
       - name: Report
         uses: dorny/test-reporter@v1
         if: always()
@@ -32,3 +32,10 @@ jobs:
           path: target/surefire-reports/*.xml
           reporter: java-junit
           fail-on-error: true
+          
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test
+          path: src/main/java/Main.java
+
