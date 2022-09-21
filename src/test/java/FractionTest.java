@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,6 +33,47 @@ class FractionTest {
         f.setDivisor(20);
 
         Assertions.assertEquals(20, f.getDivisor());
+    }
+
+
+    @Test
+    void add() {
+        Fraction f = new Fraction(10, 5);
+        Fraction f2 = new Fraction(1, 2);
+
+
+        Assertions.assertEquals("25 / 10", f.add(f2).toString());
+    }
+
+    @Test
+    void subtract() {
+        Fraction f = new Fraction(8, 4);
+        Fraction f2 = new Fraction(1, 2);
+
+        Assertions.assertEquals("12 / 8", f.subtract(f2).toString());
+    }
+
+    @Test
+    void multiply() {
+        Fraction f = new Fraction(10, 5);
+        Fraction f2 = new Fraction(1, 2);
+
+        Assertions.assertEquals("10 / 10", f.multiply(f2).toString());
+    }
+
+    @Test
+    void divide() {
+        Fraction f = new Fraction(10, 5);
+        Fraction f2 = new Fraction(1, 2);
+
+        Assertions.assertEquals("20 / 5", f.divide(f2).toString());
+    }
+
+    @Test
+    void shorten() {
+        Fraction f = new Fraction(10, 20);
+
+        Assertions.assertEquals("1 / 2", f.shorten().toString());
     }
 
     @org.junit.jupiter.api.Test
