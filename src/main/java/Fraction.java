@@ -54,7 +54,13 @@ public class Fraction {
      */
     public Fraction sub(Fraction other) {
 
-        return new Fraction((this.dividend * other.divisor) - (other.dividend *this.divisor),this.divisor*other.divisor);
+        // get the least common multiply for the divisors
+        int com = lcm(this.divisor, other.divisor);
+        // get the new dividends for the new least common multiply
+        int newDividendThis = this.dividend * (com / this.divisor);
+        int newDividendOther = other.dividend * (com / other.divisor);
+        // return the sum of the dividends
+        return new Fraction(newDividendThis - newDividendOther,com);3
     }
     /**
      * multiply two fractions
