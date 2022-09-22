@@ -60,7 +60,7 @@ public class Fraction {
         int newDividendThis = this.dividend * (com / this.divisor);
         int newDividendOther = other.dividend * (com / other.divisor);
         // return the sum of the dividends
-        return new Fraction(newDividendThis - newDividendOther,com);3
+        return new Fraction(newDividendThis - newDividendOther,com);
     }
     /**
      * multiply two fractions
