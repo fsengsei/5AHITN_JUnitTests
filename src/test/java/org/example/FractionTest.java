@@ -1,7 +1,8 @@
+package org.example;
+
+import org.example.Fraction;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class FractionTest {
 

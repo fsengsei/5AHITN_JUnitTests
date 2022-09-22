@@ -16,8 +16,8 @@ jobs:
         distribution: 'adopt'
     - name: Build
       run: mvn --batch-mode -DskipTests package
-    - name: Test
-      run: mvn --batch-mode -Dmaven.test.failure.ignore=true test
+    - name: Test3
+      run: mvn --batch-mode -Dmaven.test.failure.ignore=true verify
     - name: Report
       uses: dorny/test-reporter@v1
       if: always()

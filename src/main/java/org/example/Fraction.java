@@ -1,3 +1,5 @@
+package org.example;
+
 public class Fraction {
 
     private int dividend = 1;
@@ -36,7 +38,7 @@ public class Fraction {
     /**
      * Adds two fractions
      * @param other the other fraction
-     * @return a new Fraction with the result
+     * @return a new org.example.Fraction with the result
      */
     public Fraction add(Fraction other) {
         // get the least common multiply for the divisors
@@ -50,10 +52,9 @@ public class Fraction {
     /**
      * subtracts two fractions
      * @param other the other fraction
-     * @return a new Fraction with the result
+     * @return a new org.example.Fraction with the result
      */
     public Fraction sub(Fraction other) {
-
         // get the least common multiply for the divisors
         int com = lcm(this.divisor, other.divisor);
         // get the new dividends for the new least common multiply
@@ -65,7 +66,7 @@ public class Fraction {
     /**
      * multiply two fractions
      * @param other the other fraction
-     * @return a new Fraction with the result
+     * @return a new org.example.Fraction with the result
      */
     public Fraction mul(Fraction other) {
         return new Fraction(this.dividend * other.dividend,this.divisor* other.divisor);
@@ -73,14 +74,14 @@ public class Fraction {
     /**
      * divides two fractions
      * @param other the other fraction
-     * @return a new Fraction with the result
+     * @return a new org.example.Fraction with the result
      */
     public Fraction div(Fraction other) {
         return new Fraction(this.dividend * other.divisor,this.divisor* other.dividend);
     }
     /**
      * shortens a fraction
-     * @return a new Fraction with the result
+     * @return a new org.example.Fraction with the result
      */
     public Fraction shorten(){
         int gcd = gcd(this.dividend, this.divisor);
