@@ -7,6 +7,9 @@ class FractionTest {
 
     @org.junit.jupiter.api.Test
     void getDividend() {
+        /**
+         * testing function getDividend
+         */
         Fraction f = new Fraction(1, 10);
 
         Assertions.assertEquals(1, f.getDividend());
