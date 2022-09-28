@@ -107,9 +107,29 @@ class FractionTest {
 
     @org.junit.jupiter.api.Test
     void testToString() {
+        // normal
         Fraction f = new Fraction(17, 3);
-
         Assertions.assertEquals("17 / 3", f.toString());
+
+        // negative 1
+        Fraction f2 = new Fraction(-17, 3);
+        Assertions.assertEquals("-17 / 3", f2.toString());
+
+        // negative 2
+        Fraction f3 = new Fraction(17, -3);
+        Assertions.assertEquals("17 / -3", f3.toString());
+
+        // negative 3
+        Fraction f4 = new Fraction(-17, -3);
+        Assertions.assertEquals("17 / 3", f4.toString());
+
+        // 0 value 1
+        Fraction f5 = new Fraction(0, 3);
+        Assertions.assertEquals("0 / 3", f5.toString());
+
+        // 0 value 2
+        Fraction f6 = new Fraction(1, 0);
+        Assertions.assertEquals("1 / 1", f6.toString());
     }
 
     @Test
