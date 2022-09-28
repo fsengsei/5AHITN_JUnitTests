@@ -100,11 +100,35 @@ public class Fraction {
      * @return a new org.example.Fraction with the result
      */
     public Fraction shorten(){
-        // BUG: can't short negative numbers
-        int gcd = gcd(this.dividend, this.divisor);
-        this.setDividend(this.getDividend() /gcd);
+        // TODO: improve this code
+
+        // make temp vars
+        int tmpDividend = this.dividend;
+        int tmpDivisor = this.divisor;
+        // check if the dividend or the divisor is negative
+        if (this.dividend < 0){
+            tmpDividend = tmpDividend * -1;
+        }
+        if (this.divisor < 0){
+            tmpDivisor = tmpDivisor * -1;
+        }
+
+        int gcd = gcd(tmpDividend,tmpDivisor);
+
+        if (this.dividend < 0){
+            tmpDividend = ( tmpDividend /gcd )  * -1;
+        }else {
+            tmpDividend = ( tmpDividend /gcd );
+        }
+        if (this.divisor < 0){
+            tmpDivisor = ( tmpDivisor /gcd )  * -1;
+        }else {
+            tmpDivisor = ( tmpDivisor /gcd );
+        }
+
+        this.setDividend(tmpDividend);
         try {
-            this.setDivisor(this.getDivisor() /gcd);
+            this.setDivisor(tmpDivisor);
         }catch (Exception ignored){}
 
         return this;

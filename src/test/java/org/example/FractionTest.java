@@ -149,8 +149,8 @@ class FractionTest {
         Fraction f2 = new Fraction(2,90);
 
         Fraction result = f1.sub(f2).shorten();
-        Assertions.assertEquals(1, result.getDividend());
-        Assertions.assertEquals(-126, result.getDivisor());
+        Assertions.assertEquals(-1, result.getDividend());
+        Assertions.assertEquals(126, result.getDivisor());
     }
 
     @Test
