@@ -6,11 +6,15 @@ public class Fraction {
     private int divisor = 1;
 
    /**
-   * Constructor for Faction - class
+    * Constructor for Faction - class
+    * If the divisor is 0 it will be set to 1
    */
-   
     public Fraction(int dividend, int divisor) {
         this.dividend = dividend;
+        // check if divisor is 0
+        if (divisor == 0){
+            return;
+        }
         this.divisor = divisor;
     }
 
@@ -25,9 +29,12 @@ public class Fraction {
     public int getDivisor() {
         return divisor;
     }
-
     public void setDivisor(int divisor) {
-        this.divisor = divisor;
+        // check if the new value is 0
+        if (divisor != 0){
+            this.divisor = divisor;
+
+        }
     }
 
     @Override
