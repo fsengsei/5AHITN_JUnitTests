@@ -28,17 +28,39 @@ class FractionTest {
 
     @org.junit.jupiter.api.Test
     void getDividend() {
+        // normal value
         Fraction f = new Fraction(1, 10);
-
         Assertions.assertEquals(1, f.getDividend());
+
+        // negative value
+        Fraction f2 = new Fraction(-1, 10);
+        Assertions.assertEquals(-1, f2.getDividend());
+
+        // 0 value
+        Fraction f3 = new Fraction(0, 10);
+        Assertions.assertEquals(0, f3.getDividend());
     }
 
     @org.junit.jupiter.api.Test
     void setDividend() {
+        // normal value
         Fraction f = new Fraction(1, 10);
         f.setDividend(2);
 
         Assertions.assertEquals(2, f.getDividend());
+
+
+        // negative value
+        Fraction f2 = new Fraction(1, 10);
+        f2.setDividend(-1);
+
+        Assertions.assertEquals(-1, f2.getDividend());
+
+        // 0 value
+        Fraction f3 = new Fraction(0, 10);
+        f3.setDividend(0);
+
+        Assertions.assertEquals(0, f3.getDividend());
     }
 
     @org.junit.jupiter.api.Test
