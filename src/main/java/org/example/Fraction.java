@@ -10,6 +10,13 @@ public class Fraction {
     * If the divisor is 0 it will be set to 1
    */
     public Fraction(int dividend, int divisor) {
+        // if both numbers are negative short them to two positive ones
+        if (divisor < 0 && dividend <0){
+            this.dividend = dividend * -1;
+            this.divisor = divisor * -1;
+            return;
+        }
+
         this.dividend = dividend;
         // check if divisor is 0
         if (divisor == 0){

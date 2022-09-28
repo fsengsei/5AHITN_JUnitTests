@@ -7,6 +7,26 @@ import org.junit.jupiter.api.Test;
 class FractionTest {
 
     @org.junit.jupiter.api.Test
+    void constructorTest(){
+        // check normal use
+        Fraction f1 = new Fraction(1, 1);
+        Assertions.assertEquals("1 / 1", f1.toString());
+
+        // check negative numbers
+        Fraction f2 = new Fraction(1, -1);
+        Assertions.assertEquals("1 / -1", f2.toString());
+
+        // check two negative numbers
+        Fraction f3 = new Fraction(-1, -1);
+        Assertions.assertEquals("1 / 1", f3.toString());
+
+        // check if the divisor is 0
+        Fraction f4 = new Fraction(1, 0);
+        Assertions.assertEquals("1 / 1", f4.toString());
+    }
+
+
+    @org.junit.jupiter.api.Test
     void getDividend() {
         Fraction f = new Fraction(1, 10);
 
