@@ -100,6 +100,7 @@ public class Fraction {
      * @return a new org.example.Fraction with the result
      */
     public Fraction shorten(){
+        // BUG: can't short negative numbers
         int gcd = gcd(this.dividend, this.divisor);
         this.setDividend(this.getDividend() /gcd);
         try {

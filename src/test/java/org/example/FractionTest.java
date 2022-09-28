@@ -176,9 +176,24 @@ class FractionTest {
 
     @Test
     void shorten() {
+        // normal
         Fraction f = new Fraction(56, 528);
         f.shorten();
         Assertions.assertEquals(7, f.getDividend());
         Assertions.assertEquals(66, f.getDivisor());
+
+        // negative 1
+        Fraction f1 = new Fraction(-56, 528);
+        f1.shorten();
+        Assertions.assertEquals(-7, f1.getDividend());
+        Assertions.assertEquals(66, f1.getDivisor());
+
+        // negative 2
+        Fraction f2 = new Fraction(56, -528);
+        f2.shorten();
+        Assertions.assertEquals(7, f2.getDividend());
+        Assertions.assertEquals(-66, f2.getDivisor());
+
+
     }
 }
