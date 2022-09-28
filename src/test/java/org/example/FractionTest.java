@@ -49,7 +49,6 @@ class FractionTest {
 
         Assertions.assertEquals(2, f.getDividend());
 
-
         // negative value
         Fraction f2 = new Fraction(1, 10);
         f2.setDividend(-1);
@@ -65,17 +64,45 @@ class FractionTest {
 
     @org.junit.jupiter.api.Test
     void getDivisor() {
+        // normal
         Fraction f = new Fraction(1, 10);
-
         Assertions.assertEquals(10, f.getDivisor());
+
+        // negative value
+        Fraction f2 = new Fraction(1, -10);
+        Assertions.assertEquals(-10, f2.getDivisor());
+
+        // 0 value
+        Fraction f3 = new Fraction(1, 0);
+        Assertions.assertEquals(1, f3.getDivisor());
     }
 
     @org.junit.jupiter.api.Test
     void setDivisor() {
         Fraction f = new Fraction(1, 10);
-        f.setDivisor(20);
+        try {
+            f.setDivisor(20);
+        }catch (Exception ignored){}
 
         Assertions.assertEquals(20, f.getDivisor());
+
+        // negative value
+        Fraction f2 = new Fraction(1, 10);
+        try {
+            f2.setDivisor(-1);
+        } catch (Exception ignored) {}
+
+        Assertions.assertEquals(-1, f2.getDivisor());
+
+        // 0 value
+        Fraction f3 = new Fraction(1, 10);
+        try {
+            f3.setDivisor(0);
+        }catch (Exception e){
+            Assertions.assertEquals("can't divide through 0",e.getMessage());
+        }
+
+        Assertions.assertEquals(10, f3.getDivisor());
     }
 
     @org.junit.jupiter.api.Test

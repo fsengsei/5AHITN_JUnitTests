@@ -36,12 +36,14 @@ public class Fraction {
     public int getDivisor() {
         return divisor;
     }
-    public void setDivisor(int divisor) {
+    // if the divisor is 0 just throw an exception
+    public void setDivisor(int divisor) throws Exception{
         // check if the new value is 0
         if (divisor != 0){
             this.divisor = divisor;
-
+            return;
         }
+        throw new Exception("can't divide through 0");
     }
 
     @Override
@@ -100,7 +102,10 @@ public class Fraction {
     public Fraction shorten(){
         int gcd = gcd(this.dividend, this.divisor);
         this.setDividend(this.getDividend() /gcd);
-        this.setDivisor(this.getDivisor() /gcd);
+        try {
+            this.setDivisor(this.getDivisor() /gcd);
+        }catch (Exception ignored){}
+
         return this;
     }
 
