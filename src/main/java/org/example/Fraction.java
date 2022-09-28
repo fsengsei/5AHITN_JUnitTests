@@ -6,11 +6,22 @@ public class Fraction {
     private int divisor = 1;
 
    /**
-   * Constructor for Faction - class
+    * Constructor for Faction - class
+    * If the divisor is 0 it will be set to 1
    */
-   
     public Fraction(int dividend, int divisor) {
+        // if both numbers are negative short them to two positive ones
+        if (divisor < 0 && dividend <0){
+            this.dividend = dividend * -1;
+            this.divisor = divisor * -1;
+            return;
+        }
+
         this.dividend = dividend;
+        // check if divisor is 0
+        if (divisor == 0){
+            return;
+        }
         this.divisor = divisor;
     }
 
@@ -25,9 +36,14 @@ public class Fraction {
     public int getDivisor() {
         return divisor;
     }
-
-    public void setDivisor(int divisor) {
-        this.divisor = divisor;
+    // if the divisor is 0 just throw an exception
+    public void setDivisor(int divisor) throws Exception{
+        // check if the new value is 0
+        if (divisor != 0){
+            this.divisor = divisor;
+            return;
+        }
+        throw new Exception("can't divide through 0");
     }
 
     @Override
@@ -84,9 +100,37 @@ public class Fraction {
      * @return a new org.example.Fraction with the result
      */
     public Fraction shorten(){
-        int gcd = gcd(this.dividend, this.divisor);
-        this.setDividend(this.getDividend() /gcd);
-        this.setDivisor(this.getDivisor() /gcd);
+        // TODO: improve this code
+
+        // make temp vars
+        int tmpDividend = this.dividend;
+        int tmpDivisor = this.divisor;
+        // check if the dividend or the divisor is negative
+        if (this.dividend < 0){
+            tmpDividend = tmpDividend * -1;
+        }
+        if (this.divisor < 0){
+            tmpDivisor = tmpDivisor * -1;
+        }
+
+        int gcd = gcd(tmpDividend,tmpDivisor);
+
+        if (this.dividend < 0){
+            tmpDividend = ( tmpDividend /gcd )  * -1;
+        }else {
+            tmpDividend = ( tmpDividend /gcd );
+        }
+        if (this.divisor < 0){
+            tmpDivisor = ( tmpDivisor /gcd )  * -1;
+        }else {
+            tmpDivisor = ( tmpDivisor /gcd );
+        }
+
+        this.setDividend(tmpDividend);
+        try {
+            this.setDivisor(tmpDivisor);
+        }catch (Exception ignored){}
+
         return this;
     }
 
