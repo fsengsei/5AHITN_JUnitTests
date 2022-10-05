@@ -33,7 +33,6 @@ jobs:
           reporter: java-junit
           fail-on-error: true
           
-      - run: mvn --batch-mode --update-shnaphsots verify
       - run: mkdir staging && cp target/*.jar staging
       - uses: actions/upload-artifact@v3
         with:
