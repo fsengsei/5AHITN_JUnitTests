@@ -16,8 +16,8 @@
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
-            <artifactId>pgjdbc-osgi-test</artifactId>
-            <version>42.3.7</version>
+            <artifactId>postgresql</artifactId>
+            <version>LATEST</version>
         </dependency>
     </dependencies>
 
