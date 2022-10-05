@@ -24,13 +24,13 @@ jobs:
           --health-retries 5
 
     steps:
-    - name: Start Ubuntu MySQL (SUDO)
-      run: sudo service mysql start
-    - name: Verify MySQL connection
+    #- name: Start Ubuntu MySQL (SUDO)
+    #  run: sudo service mysql start
+    - name: Verify Postgres connection
       run: |
-              mysql --version
-              sudo apt-get install -y mysql-client
-              mysql --host 127.0.0.1 --port 3306 --user=root --password=root -e "SHOW DATABASES"
+              psql --version
+              sudo apt-get install -y psql
+              psql --host 127.0.0.1 --port 3306 --user=root --password=root -e "select version()"
 
     - name: Checkout
       uses: actions/checkout@v3
