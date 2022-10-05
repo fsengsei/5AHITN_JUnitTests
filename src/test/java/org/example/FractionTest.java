@@ -29,7 +29,7 @@ class FractionTest {
     @org.junit.jupiter.api.Test
     void connectToDatabase() throws SQLException {
         try {
-            Class.forName("org.postgresql.jdbc.Driver.");
+            Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
