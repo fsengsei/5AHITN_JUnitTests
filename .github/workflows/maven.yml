@@ -8,22 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Shutdown Ubuntu MySQL (SUDO)
-      run: sudo service mysql stop # Shutdown the Default MySQL, "sudo" is necessary, please not remove it
-     # ... some steps before set-up MySQL ...
-    - name: Set up MySQL
-      uses: mirromutth/mysql-action@v1.1
-      with:
-        mysql version: '8.0' # Optional, default value is "latest". The version of the MySQL
-        mysql database: 'some_test' # Optional, default value is "test". The specified database which will be create
-        mysql root password: root # Required if "mysql user" is empty, default is empty. The root superuser password
-        mysql user: 'developer' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
-        mysql password: root # Required if "mysql user" exists. The password for the "mysql user"
+      run: sudo service mysql start # Shutdown the Default MySQL, "sudo" is necessary, please not remove it
 
     - name: Verify MySQL connection
       run: |
               mysql --version
               sudo apt-get install -y mysql-client
-              mysql --host 127.0.0.1 --port 3306 -u developer -p root -e "SHOW DATABASES"
+              mysql --host 127.0.0.1 --port 3306 -u root -p root -e "SHOW DATABASES"
     - name: Checkout
       uses: actions/checkout@v3
     - name: Set up JDK 11
