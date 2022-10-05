@@ -28,6 +28,7 @@ jobs:
     #  run: sudo service mysql start
     - name: Verify Postgres connection
       run: |
+            apt-get update
             apt-get install postgresql-client
             psql --host 127.0.0.1 --port 3306 --user=root --password=root -e "select version()"
 
