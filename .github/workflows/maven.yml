@@ -7,6 +7,11 @@ jobs:
   test-and-build:
     runs-on: ubuntu-latest
     steps:
+    - name: Verify MySQL connection
+      run: |
+              mysql --version
+              sudo apt-get install -y mysql-client
+              mysql --host 127.0.0.1 --port 3306 -uroot -psecretroot -e "SHOW DATABASES"
     - name: Checkout
       uses: actions/checkout@v3
     - name: Set up JDK 11
