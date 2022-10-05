@@ -2,6 +2,10 @@ import java.math.BigInteger;
 
 public class Fraction {
 
+    /**
+     * Comment for push to github
+     */
+
     private int dividend = 1;
     private int divisor = 1;
 
