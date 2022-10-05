@@ -1,3 +1,5 @@
+package htl.steyr.ac.at;
+
 public class Main {
     public static void main(String[] args) {
         int dividend = Integer.parseInt(args[0]);
