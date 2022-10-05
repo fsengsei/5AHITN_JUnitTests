@@ -29,9 +29,9 @@ jobs:
     #  run: sudo service mysql start
     - name: Verify Postgres connection
       run: |
-            apt-get update
-            apt-get install -y postgresql-client
-            PGPASSWORD=postgres psql --host 127.0.0.1 --port 5432 --user=postgres -e "select version()"
+            sudo apt-get update
+            sudo apt-get install -y postgresql-client
+            PGPASSWORD=postgres sudo psql --host 127.0.0.1 --port 5432 --user=postgres -e "select version()"
 
     - name: Checkout
       uses: actions/checkout@v3
