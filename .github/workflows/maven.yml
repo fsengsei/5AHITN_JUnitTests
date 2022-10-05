@@ -7,14 +7,14 @@ jobs:
   test-and-build:
     runs-on: ubuntu-latest
     steps:
-    - name: Shutdown Ubuntu MySQL (SUDO)
-      run: sudo service mysql start # Shutdown the Default MySQL, "sudo" is necessary, please not remove it
-
+    - name: Start Ubuntu MySQL (SUDO)
+      run: sudo service mysql start
     - name: Verify MySQL connection
       run: |
               mysql --version
               sudo apt-get install -y mysql-client
               mysql --host 127.0.0.1 --port 3306 --user=root --password=root -e "SHOW DATABASES"
+
     - name: Checkout
       uses: actions/checkout@v3
     - name: Set up JDK 11
@@ -22,6 +22,7 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
+
     - name: Build
       run: mvn --batch-mode -DskipTests package
     - name: Test3
