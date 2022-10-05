@@ -30,7 +30,7 @@ jobs:
       run: |
             apt-get update
             apt-get install -y postgresql-client
-            psql --host 127.0.0.1 --port 3306 --user=root --password=root -e "select version()"
+            PGPASSWORD=postgres psql --host 127.0.0.1 --port 3306 --user=postgres -e "select version()"
 
     - name: Checkout
       uses: actions/checkout@v3
