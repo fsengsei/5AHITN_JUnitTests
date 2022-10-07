@@ -25,14 +25,13 @@ jobs:
           - 5432:5432
       mysql:
         image: mysql
-
         env:
           MYSQL_DATABASE: root
           MYSQL_USER: root
           MYSQL_PASSWORD: root
+        ports:
+          - 3306:3306
 
-          ports:
-            - 3306:3306
     steps:
     # Verify the database is active
     - name: Verify Postgres connection
