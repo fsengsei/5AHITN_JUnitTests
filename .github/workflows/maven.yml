@@ -44,7 +44,7 @@ jobs:
     - name: Verify MySql connection
       run: |
             sudo apt-get install mysql-client
-            mysql --host=localhost --user=root --password=root --execute="SHOW TABLES" root
+            mysql --host=127.0.0.1 --user=root --password=root --execute="SHOW TABLES" root
     - name: Checkout
       uses: actions/checkout@v3
     - name: Set up JDK 11
