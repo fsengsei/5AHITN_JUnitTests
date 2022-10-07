@@ -41,9 +41,10 @@ jobs:
       env:
             PGPASSWORD: postgres
     - name: Verify MySql connection
+      # https://github.com/docker-library/mysql/issues/732
+      # the server needs some time before accepting connections
       run: |
             sudo apt-get install mysql-client
-            sleep 9s
             mysql --host=127.0.0.1 --user=root --password=root --execute="SHOW TABLES" information_schema
     - name: Checkout
       uses: actions/checkout@v3
