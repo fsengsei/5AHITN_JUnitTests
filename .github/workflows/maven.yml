@@ -26,9 +26,8 @@ jobs:
       mysql:
         image: mariadb
         env:
-          MYSQL_DATABASE: root
-          MYSQL_USER: root
-          MYSQL_PASSWORD: root
+          MYSQL_ROOT_PASSWORD: root
+
         ports:
           - 3306:3306
 
@@ -45,7 +44,7 @@ jobs:
       run: |
             sudo apt-get install mysql-client
             sleep 9s
-            mysql --host=127.0.0.1 --user=root --password=root --execute="SHOW TABLES" root
+            mysql --host=127.0.0.1 --user=root --password=root --execute="SHOW TABLES" information_schema
     - name: Checkout
       uses: actions/checkout@v3
     - name: Set up JDK 11
