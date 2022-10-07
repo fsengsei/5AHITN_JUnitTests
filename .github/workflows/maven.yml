@@ -6,7 +6,6 @@ on:
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
-    # Service containers to run with `container-job`
     services:
       # Label used to access the service container
       postgres:
@@ -24,9 +23,18 @@ jobs:
         ports:
           # Maps tcp port 5432 on service container to the host
           - 5432:5432
+      mysql:
+        image: mysql
+
+        env:
+          MYSQL_DATABASE: root
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
+
+          ports:
+            - 3306:3306
     steps:
-    #- name: Start Ubuntu MySQL (SUDO)
-    #  run: sudo service mysql start
+    # Verify the database is active
     - name: Verify Postgres connection
       run: |
             sudo apt-get update
@@ -34,7 +42,10 @@ jobs:
             psql --host 127.0.0.1 --port 5432 --user=postgres -d postgres --command="SELECT VERSION()"
       env:
             PGPASSWORD: postgres
-
+    - name: Verify MySql connection
+      run: |
+            sudo apt-get install mysql-client
+            mysql -h localhost -u root -p root -e "SHOW TABLES" root
     - name: Checkout
       uses: actions/checkout@v3
     - name: Set up JDK 11
