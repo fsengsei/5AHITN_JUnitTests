@@ -24,7 +24,7 @@ jobs:
           # Maps tcp port 5432 on service container to the host
           - 5432:5432
       mysql:
-        image: mysql
+        image: mariadb
         env:
           MYSQL_DATABASE: root
           MYSQL_USER: root
