@@ -1,8 +1,34 @@
+import htl.steyr.ac.at.DbInstance;
 import htl.steyr.ac.at.Fraction;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 class FractionTest {
+    static Connection db;
+
+    @BeforeAll
+    static void initDbc(){
+        try {
+            db = DbInstance.getInstance();
+        } catch (Exception e){
+
+        }
+    }
+
+    @org.junit.jupiter.api.Test
+    @Order(1)
+    public void createDatabase() {
+        Assertions.assertDoesNotThrow(() -> {
+            Statement s = db.createStatement();
+            s.executeUpdate("CREATE DATABASE Test");
+        });
+    }
 
     @org.junit.jupiter.api.Test
     void getDividend() {
