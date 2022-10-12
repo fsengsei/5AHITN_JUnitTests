@@ -26,7 +26,7 @@ class FractionTest {
     public void createDatabase() {
         Assertions.assertDoesNotThrow(() -> {
             Statement s = db.createStatement();
-            s.executeUpdate("CREATE DATABASE Test");
+            s.executeUpdate("CREATE DATABASE Test2");
         });
     }
 
@@ -35,7 +35,7 @@ class FractionTest {
     public void createTable() {
         Assertions.assertDoesNotThrow(() -> {
             Statement s = db.createStatement();
-            s.executeUpdate("CREATE TABLE Test" +
+            s.executeUpdate("CREATE TABLE Test2" +
                     "(test INTEGER not NULL)");
         });
     }
@@ -45,7 +45,7 @@ class FractionTest {
     public void insertIntoTable() {
         Assertions.assertDoesNotThrow(() -> {
             Statement s = db.createStatement();
-            s.executeUpdate("INSERT INTO Test(test)" +
+            s.executeUpdate("INSERT INTO Test2 (test)" +
                     "VALUES(1)");
         });
     }
@@ -55,9 +55,9 @@ class FractionTest {
     public void readDataFromTable() throws SQLException {
         Statement s = db.createStatement();
         Assertions.assertDoesNotThrow(() -> {
-            s.executeUpdate("SELECT * FROM Test");
+            s.executeUpdate("SELECT * FROM Test2");
         });
-        Assertions.assertEquals(s.executeUpdate("SELECT * FROM Test")
+        Assertions.assertEquals(s.executeUpdate("SELECT * FROM Test2")
         , 1);
     }
 
