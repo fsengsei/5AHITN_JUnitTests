@@ -31,6 +31,37 @@ class FractionTest {
     }
 
     @org.junit.jupiter.api.Test
+    @Order(2)
+    public void createTable() {
+        Assertions.assertDoesNotThrow(() -> {
+            Statement s = db.createStatement();
+            s.executeUpdate("CREATE TABLE Test" +
+                    "(test INTEGER not NULL)");
+        });
+    }
+
+    @org.junit.jupiter.api.Test
+    @Order(3)
+    public void insertIntoTable() {
+        Assertions.assertDoesNotThrow(() -> {
+            Statement s = db.createStatement();
+            s.executeUpdate("INSERT INTO Test(test)" +
+                    "VALUES(1)");
+        });
+    }
+
+    @org.junit.jupiter.api.Test
+    @Order(4)
+    public void readDataFromTable() throws SQLException {
+        Statement s = db.createStatement();
+        Assertions.assertDoesNotThrow(() -> {
+            s.executeUpdate("SELECT * FROM Test");
+        });
+        Assertions.assertEquals(s.executeUpdate("SELECT * FROM Test")
+        , 1);
+    }
+
+    @org.junit.jupiter.api.Test
     void getDividend() {
         /**
          * testing function getDividend
