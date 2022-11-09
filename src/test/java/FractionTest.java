@@ -1,9 +1,6 @@
 import htl.steyr.ac.at.DbInstance;
 import htl.steyr.ac.at.Fraction;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.function.ThrowingSupplier;
 
 import java.sql.Connection;
@@ -11,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class FractionTest {
     private static Connection connect(String db) throws SQLException {
         Connection conn = null;
