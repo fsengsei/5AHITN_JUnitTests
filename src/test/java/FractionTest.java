@@ -4,61 +4,72 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.ThrowingSupplier;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 class FractionTest {
-    static Connection db;
+    private static Connection connect(String db) throws SQLException {
+        Connection conn = null;
 
-    @BeforeAll
-    static void initDbc(){
-        try {
-            db = DbInstance.getInstance();
-        } catch (Exception e){
+
+        if (db.length() <= 0) {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "root");
+        } else {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306" + db, "root", "root");
 
         }
+
+
+        return conn;
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     @Order(1)
-    public void createDatabase() {
-        Assertions.assertDoesNotThrow(() -> {
-            Statement s = db.createStatement();
-            s.executeUpdate("CREATE DATABASE Test2");
+    void connectToDatabase() {
+        Assertions.assertDoesNotThrow(new ThrowingSupplier<Connection>() {
+            @Override
+            public Connection get() throws Throwable {
+                return connect("");
+            }
         });
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     @Order(2)
-    public void createTable() {
-        Assertions.assertDoesNotThrow(() -> {
-            Statement s = db.createStatement();
-            s.executeUpdate("CREATE TABLE Test2" +
-                    "(test INTEGER not NULL)");
-        });
-    }
+    void createDatabase() {
 
-    @org.junit.jupiter.api.Test
-    @Order(3)
-    public void insertIntoTable() {
-        Assertions.assertDoesNotThrow(() -> {
-            Statement s = db.createStatement();
-            s.executeUpdate("INSERT INTO Test2 (test)" +
-                    "VALUES(1)");
-        });
-    }
+        /**
+         *  Ist dasselbe wie unten nur das Interfaces mit nur einer Funktion mit () (lambda) aufgerufen werden können
+         *  Assertions.assertDoesNotThrow(new ThrowingSupplier<Object>() {
+         *             @Override
+         *             public Object get() throws Throwable {
+         *                 Connection c = connect("");
+         *
+         *                 Statement s = c.createStatement();
+         *                 s.executeUpdate("CREATE DATABASE testdb");
+         *
+         *                 s.close();
+         *                 c.close();
+         *                 return null;
+         *             }
+         *         });
+         */
 
-    @org.junit.jupiter.api.Test
-    @Order(4)
-    public void readDataFromTable() throws SQLException {
-        Statement s = db.createStatement();
         Assertions.assertDoesNotThrow(() -> {
-            s.executeUpdate("SELECT * FROM Test2");
+            Connection c = connect("");
+
+            Statement s = c.createStatement();
+            s.executeUpdate("CREATE DATABASE testdb");
+
+            s.close();
+            c.close();
         });
-        Assertions.assertEquals(s.executeUpdate("SELECT * FROM Test2")
-        , 1);
+
+
     }
 
     @org.junit.jupiter.api.Test
