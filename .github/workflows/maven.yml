@@ -10,8 +10,7 @@ jobs:
    
     steps:
       - name: Set up MySQL
-        run: |
-            sudo /etc/init.d/mysql start
+        run: sudo service mysql start
           
       - name: Checkout
         uses: actions/checkout@v3
