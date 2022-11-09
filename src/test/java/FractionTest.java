@@ -1,12 +1,8 @@
-import htl.steyr.ac.at.DbInstance;
 import htl.steyr.ac.at.Fraction;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.function.ThrowingSupplier;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class FractionTest {
@@ -24,7 +20,8 @@ class FractionTest {
 
         return conn;
     }
-//
+
+    //
     @Test
     @Order(1)
     void connectToDatabase() {
@@ -68,6 +65,102 @@ class FractionTest {
         });
 
 
+    }
+
+    @Test
+    @Order(3)
+    void createTable() {
+        Assertions.assertDoesNotThrow(() -> {
+            Connection c = connect("testdb");
+        });
+    }
+
+    @Test
+    @Order(4)
+    void connectToSpecificDatabase() {
+        Assertions.assertDoesNotThrow(() -> {
+            Connection c = connect("testdb");
+
+            Statement s = c.createStatement();
+            s.executeUpdate("CREATE TABLE testtable (mycolumn VARCHAR(255) NULL)");
+
+            s.close();
+            c.close();
+        });
+    }
+
+    @Test
+    @Order(5)
+    void insertIntoTable() {
+        Assertions.assertDoesNotThrow(() -> {
+            Connection c = connect("testdb");
+
+            Statement s = c.createStatement();
+            s.executeUpdate("INSERT INTO testtable (mycolumn) VALUES ('sample text')");
+
+            s.close();
+            c.close();
+        });
+    }
+
+    @Test
+    @Order(6)
+    void selectFromTable() {
+        Assertions.assertDoesNotThrow(() -> {
+            Connection c = connect("testdb");
+
+            Statement s = c.createStatement();
+            ResultSet set = s.executeQuery("SELECT * FROM testtable LIMIT 1");
+
+            if (set.first()) {
+                Assertions.assertEquals(set.getString("mycolumn"), "sample text");
+            }
+
+            s.close();
+            c.close();
+        });
+    }
+
+    @Test
+    @Order(7)
+    void deleteFromTable() {
+        Assertions.assertDoesNotThrow(() -> {
+            Connection c = connect("testdb");
+
+            Statement s = c.createStatement();
+            s.executeUpdate("DELETE FROM testtable WHERE mycolumn = ('sample text') ");
+
+            s.close();
+            c.close();
+        });
+    }
+
+    @Test
+    @Order(7)
+    void deleteTable() {
+        Assertions.assertDoesNotThrow(() -> {
+            Connection c = connect("testdb");
+
+            Statement s = c.createStatement();
+            s.executeUpdate("DROP TABLE testtable");
+
+            s.close();
+            c.close();
+        });
+    }
+
+    @Test
+    @Order(8)
+    void deleteDatabase() {
+        Assertions.assertDoesNotThrow(() -> {
+            Connection c = connect("testdb");
+
+            Statement s = c.createStatement();
+            s.executeUpdate("DROP DATABASE testdb");
+
+            s.close();
+            c.close();
+        });
     }
 
     @org.junit.jupiter.api.Test
