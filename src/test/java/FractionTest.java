@@ -69,7 +69,7 @@ class FractionTest {
 
     @Test
     @Order(3)
-    void createTable() {
+    void connectToSpecificDatabase() {
         Assertions.assertDoesNotThrow(() -> {
             Connection c = connect("testdb");
         });
@@ -77,7 +77,7 @@ class FractionTest {
 
     @Test
     @Order(4)
-    void connectToSpecificDatabase() {
+    void createTable() {
         Assertions.assertDoesNotThrow(() -> {
             Connection c = connect("testdb");
 
