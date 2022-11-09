@@ -112,7 +112,7 @@ class FractionTest {
             Statement s = c.createStatement();
             ResultSet set = s.executeQuery("SELECT * FROM testtable LIMIT 1");
 
-            if (set.first()) {
+            if (set.next()) {
                 Assertions.assertEquals(set.getString("mycolumn"), "sample text");
             }
 
@@ -136,7 +136,7 @@ class FractionTest {
     }
 
     @Test
-    @Order(7)
+    @Order(8)
     void deleteTable() {
         Assertions.assertDoesNotThrow(() -> {
             Connection c = connect("testdb");
@@ -150,7 +150,7 @@ class FractionTest {
     }
 
     @Test
-    @Order(8)
+    @Order(9)
     void deleteDatabase() {
         Assertions.assertDoesNotThrow(() -> {
             Connection c = connect("testdb");
